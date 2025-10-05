@@ -3,8 +3,12 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
-    with:
-      config: |
-        board: nice_nano_v2
-        shield: testkey
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup ZMK
+        uses: zmkfirmware/zmk/.github/actions/setup-zmk@v0.3
+
+      - name: Build firmware
+        run: west build -b nice_nano_v2
