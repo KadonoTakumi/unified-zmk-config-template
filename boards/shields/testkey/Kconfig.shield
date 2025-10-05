@@ -1,0 +1,2 @@
+config SHIELD_TESTKEY
+    def_bool y
